@@ -170,24 +170,6 @@ Function FldDes$(A As DAO.Field)
 FldDes = PrpVal(A.Properties, "Description")
 End Function
 
-Function FldDrsEle$(Fld, F As Drs)
-Dim Dr
-For Each Dr In AyNz(F.Dry)
-    If Fld Like Dr(1) Then FldDrsEle = Dr(0): Exit Function
-Next
-End Function
-
-Function FldFd(Fld, Tbl, F As Drs, E As Dictionary) As DAO.Field2
-Const CSub$ = "FldFd"
-Dim O As DAO.Field2, Ele$
-Set O = StdFldFd(Fld, Tbl): If IsSomething(O) Then Set FldFd = O: Exit Function
-Ele = FldDrsEle(Fld, F): If Ele = "" Then Er CSub, "[Tbl]-[Fld] is not found given [Fld-Drs]", Tbl, Fld, DrsFmt(F)
-Set O = StdEleFd(Ele, Fld): If IsSomething(O) Then Set FldFd = O:   Exit Function
-If IsNothing(E) Then Er CSub, "[Tbl]-[Fld] cannot of get a Fd by [Fld-Drs] and [Ele-Dic]", Tbl, Fld, DrsFmt(F), EleDicFmt(E)
-If Not E.Exists(Ele) Then Er CSub, ""
-Set FldFd = FdClone(E(Ele), Fld)
-End Function
-
 Function FldInfDryFny() As String()
 FldInfDryFny = SplitSpc("Fld Pk Ty Sz Dft Req Des")
 End Function
@@ -197,7 +179,7 @@ FldInpy = AyTakT1(LyFld(NoT1))
 End Function
 
 Function FldSqlTy$(Fld, F As Drs, E As Dictionary)
-FldSqlTy = FdsqlTy(FldFd(F, "", F, E))
+FldSqlTy = FdsqlTy(LookupFd(F, "", F, E))
 End Function
 
 Function FldVal(A As DAO.Field)

@@ -16,10 +16,17 @@ Private Function FldChk(Fld, F As Drs, E As Dictionary) As String()
 Const CSub$ = CMod & "FldChk"
 If IsStdFld(Fld) Then Exit Function
 Dim Ele$
-Ele = FldDrsEle(Fld, F): If Ele = "" Then FldChk = Er1(Fld, Ele): Exit Function
+Ele = FldChk1$(Fld, F): If Ele = "" Then FldChk = Er1(Fld, Ele): Exit Function
 If IsStdEle(Ele) Then Exit Function
 If IsNothing(E) Then FldChk = Er2(Fld)
 If Not E.Exists(Ele) Then FldChk = Er3(Fld, Ele)
+End Function
+
+Private Function FldChk1$(Fld, F As Drs) ' Return Ele$
+Dim Dr
+For Each Dr In AyNz(F.Dry)
+    If Fld Like Dr(1) Then FldChk1 = Dr(0): Exit Function
+Next
 End Function
 
 Private Function Er1(Fld, Ele) As String()
