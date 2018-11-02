@@ -50,7 +50,7 @@ DoCmd.RunSQL "Create Table Res (ResNm Text(50), Att Attachment)"
 End Sub
 
 Sub DbCrtSpecTbl(A As Database)
-DbCrtSchm A, SpecSchmLines
+DbSchmCrt A, SpecSchmLines
 End Sub
 
 Sub DbCrtTbl(A As Database, T$, FldDclAy)
@@ -239,14 +239,6 @@ Sub DbResClr(A As Database, ResNm$)
 A.Execute "Delete From Res where ResNm='" & ResNm & "'"
 End Sub
 
-Sub DbSchmCrt(A As Database, Schm$)
-Dim Er$(), StruAy$(), B As StruBase, Stru
-SchmAsg Schm, Er, StruAy$(), B
-If AyBrwEr(Er) Then Exit Sub
-For Each Stru In StruAy
-    DbStruCrt A, Stru, B
-Next
-End Sub
 
 Function DbScly(A As Database) As String()
 DbScly = AySy(AyOfAy_Ay(AyMap(ItrMap(A.TableDefs, "TdScly"), "TdScly_AddPfx")))

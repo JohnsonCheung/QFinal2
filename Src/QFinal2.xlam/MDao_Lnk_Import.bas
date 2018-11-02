@@ -798,10 +798,6 @@ Function TFLinHasSk(A$) As Boolean
 TFLinHasSk = HasSubStr(A, " | ")
 End Function
 
-Function TFnyFDesDic(T$, Fny$(), FDes As Dictionary, TFDes As Drs) As Dictionary
-Set TFnyFDesDic = New Dictionary
-End Function
-
 Function TFTyChkMsg$(T, F, Ty As DAO.DataTypeEnum, ExpTyAy() As DAO.DataTypeEnum)
 'DbtfTyMsg = FmtQQ("Table[?] field[?] has type[?].  It should be type[?].", T, F, S1, S2)
 
@@ -845,6 +841,12 @@ For Each L In AyNz(A)
     XFyX = XFLinX(L, F)
     If XFyX <> "" Then Exit Function
 Next
+End Function
+
+Function XFLinX$(A, F)
+Dim X$, FLikss$
+LinAsgTRst A, X, FLikss
+If StrLikss(F, FLikss) Then XFLinX = X
 End Function
 
 Function XSqpInBExpr$(Ay, FldNm$, Optional WithQuote As Boolean)

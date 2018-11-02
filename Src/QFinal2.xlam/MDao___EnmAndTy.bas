@@ -48,19 +48,3 @@ Type StruBase
 End Type
 Type FDes: F As String: Des As String: End Type
 Type TDes: T As String: Des As String: End Type
-
-Type T: Lno As Integer: T As String: Fny() As String: Sk() As String:     End Type
-Type F: Lno As Integer: E As String: LikT As String:  LikFny() As String: End Type
-Type DD: Lno As Integer: T As String: F As String:     Des As String:      End Type
-Type E
-    Lno As Integer
-    E As String
-    Ty As DAO.DataTypeEnum
-    Req As Boolean
-    ZLen As Boolean
-    TxtSz As Byte
-    Expr As String
-    VRul As String
-    Dft As String
-    VTxt As String
-End Type

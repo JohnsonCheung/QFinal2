@@ -1,4 +1,4 @@
-Attribute VB_Name = "MDao_Schm_Chk"
+Attribute VB_Name = "MDao_Schm_Stru_Chk"
 Option Explicit
 Const CMod = "DaoSchmChk."
 Function StruChk(Stru, F As Drs, E As Dictionary) As String() ' Chk may return Sz=0, But Er always Sz>0

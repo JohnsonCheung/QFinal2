@@ -9,18 +9,6 @@ Function DbStru$(A As Database)
 DbStru = DbttStru(A, DbTny(A))
 End Function
 
-Sub DbStruCrt(A As Database, Stru, B As StruBase)
-Dim Td As DAO.TableDef, Pk$, Sk$, Des$, FDesDic As Dictionary
-StruAsg Stru, B, _
-    Td, Pk, Sk, Des, FDesDic
-A.TableDefs.Append Td
-If Pk <> "" Then A.Execute Pk
-If Sk <> "" Then A.Execute Sk
-If Des <> "" Then DbtDes(A, Td.Name) = Des
-DbtFDesDicSet A, Td.Name, FDesDic
-End Sub
-
-
 Sub DbStruEns(A As Database, Stru$, B As StruBase)
 Chk StruChk(Stru, B.F, B.E)
 Dim S$
@@ -36,16 +24,6 @@ End Sub
 Function Stru$()
 Stru = CurDbStru
 End Function
-
-Function TFnyStruBaseTd(T, Fny$(), F As Drs, E As Dictionary) As DAO.TableDef
-Dim FdAy() As DAO.Field2
-Dim Fld
-For Each Fld In Fny
-    PushObj FdAy, FldFd(Fld, T, F, E)  '<===
-Next
-Set TFnyStruBaseTd = NewTd(T, FdAy)
-End Function
-
 
 Function StruFld(ParamArray Ap()) As Drs
 Dim Dry(), Av(), Ele$, LikFF, LikFld, X

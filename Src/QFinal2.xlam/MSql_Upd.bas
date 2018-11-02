@@ -125,13 +125,6 @@ B = JnComma(AyMapSy(Dr, "VarSqlQuote"))
 InsSql = FmtQQ("Insert Into [?] (?) Values(?)", T, A, B)
 End Function
 
-Function StruSkSql$(Stru, T)
-Dim Sk$()
-Sk = SslSy(RmvT1(Replace(TakBef(Stru, "|"), "*", T)))
-If Sz(Sk) = 0 Then Exit Function
-StruSkSql = CrtSkSql(T, Sk)
-End Function
-
 Function SelTblSql$(T)
 SelTblSql = "Select * from [" & T & "]"
 End Function

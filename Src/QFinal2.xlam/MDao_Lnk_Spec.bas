@@ -8,6 +8,15 @@ End Function
 Function LSLines$()
 LSLines = SpnmLines("Lnk")
 End Function
+Private Function ActFldLy(ActInpy$(), LyFld$()) As String()
+ActFldLy = AyWhT1InAy(LyFld, ActInpy)
+End Function
+
+Function ActInpy(FmIp$(), InAct$()) As String()
+'Dim Inpy$():   Inpy = SslSy(AyWhRmvTT(NoT1, "Inp", "|")(0))
+'ActInpy = AyMinus(Inpy, InAct)
+End Function
+
 
 Sub LSpecAsg(A, Optional OTblNm$, Optional OLnkColStr$, Optional OWhBExpr$)
 Dim Ay$()
